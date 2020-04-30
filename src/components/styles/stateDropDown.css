@@ -1,0 +1,21 @@
+.stateInput{
+
+  display: inline-block;
+  width : 33%;
+  border:5px;
+}
+
+#simple-select-label{
+
+  font-size: 1.15em;
+}
+
+.dropDownAndSelect{
+  width:33%;
+}
+
+.dropDown{
+  display:inline-block;
+  margin: 2.5%;
+
+}

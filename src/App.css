@@ -1,10 +1,26 @@
 .App {
   text-align: center;
+  margin-left:7.5%;
+  margin-right: 7.5%;
+  margin-top: 5%;
 }
-
+path {
+  pointer-events: all;
+}
+path:hover {
+  opacity: 0.50;
+  cursor: pointer;
+}
+html{
+  background-color: white;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+.mapContainer{
+
+  display:block;
 }
 
 @media (prefers-reduced-motion: no-preference) {
