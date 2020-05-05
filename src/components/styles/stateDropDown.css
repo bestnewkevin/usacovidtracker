@@ -1,12 +1,11 @@
 .stateInput{
-
+  text-align: left;
   display: inline-block;
-  width : 33%;
+  width : 90%;
   border:5px;
 }
 
 #simple-select-label{
-
   font-size: 1.15em;
 }
 

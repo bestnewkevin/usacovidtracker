@@ -4,28 +4,48 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import './styles/stateDropDown.css';
 import StateTable from './StateTable';
+
+
+/* Sort States in selection after being pulled from JSON*/
+function compare( a, b ) {
+    if ( a.key < b.key ){
+      return -1;
+    }
+    if ( a.key > b.key ){
+      return 1;
+    }
+    return 0;
+  }
 
 class StateSelection extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             stateName : "",
-    
+            prevState: ""
         };
         this.handleChange = this.handleChange.bind(this);
-        
+        this.handleSelectedStatesChange = this.handleSelectedStatesChange.bind(this)
     };
 
-    async handleChange(event){
-        const value = event.target.value
-        await this.setState({
-            stateName:value
-        });
+    handleSelectedStatesChange(newState,prevState){
+        this.props.onStateNameChange(newState,prevState)
+    }
 
-        //console.log(this.state);
+    handleChange(event){
 
+        //we take new state from onclick event
+        const newState = event.target.value
+        // we take prev state from current state
+        const prevState = this.state.prevState
+        // we send it off to handle seleted Changed
+        this.handleSelectedStatesChange(newState,prevState)
+        this.setState({
+            stateName:newState,
+            prevState:newState
+        })
+        
     }
 
  
@@ -34,7 +54,17 @@ class StateSelection extends React.Component{
         const stateName = this.state.stateName;
         //console.log("state SELECTION");
         //console.log(this.props.data);
-
+        let rows = [];
+        //Create States for state Dropdown
+        this.props.data.table.forEach((entry) => {
+            rows.push(
+                <MenuItem value={entry.USAState} key={entry.USAState}>
+                    {entry.USAState}
+                </MenuItem>
+            )
+        })
+        /* Keep Usa Total at the top of dropdown, sort all the other options! */
+        rows = rows.slice(0,1).concat(rows.slice(1).sort(compare));
             return(
                 <>
                  <div className = "stateInput">
@@ -47,62 +77,7 @@ class StateSelection extends React.Component{
                             value= {stateName}
                             onChange={this.handleChange}
                             >
-                                <MenuItem value="USA Total">USA Total</MenuItem>
-                                <MenuItem value="Alabama">Alabama</MenuItem>
-                                <MenuItem value="Alaska">Alaska</MenuItem>
-                                <MenuItem value="Arizona">Arizona</MenuItem>
-                                <MenuItem value="Arkansas">Arkansas</MenuItem>
-                                <MenuItem value="California">California</MenuItem>
-                                <MenuItem value="Colorado">Colorado</MenuItem>
-                                <MenuItem value="Connecticut">Connecticut</MenuItem>
-                                <MenuItem value="Delaware">Delaware</MenuItem>
-                                <MenuItem value="District Of Columbia">District Of Columbia</MenuItem>
-                                <MenuItem value="Florida">Florida</MenuItem>
-                                <MenuItem value="Georgia">Georgia</MenuItem>
-                                <MenuItem value="Hawaii">Hawaii</MenuItem>
-                                <MenuItem value="Idaho">Idaho</MenuItem>
-                                <MenuItem value="Illinois">Illinois</MenuItem>
-                                <MenuItem value="Indiana">Indiana</MenuItem>
-                                <MenuItem value="Iowa">Iowa</MenuItem>
-                                <MenuItem value="Kansas">Kansas</MenuItem>
-                                <MenuItem value="Kentucky">Kentucky</MenuItem>
-                                <MenuItem value="Louisiana">Louisiana</MenuItem>
-                                <MenuItem value="Maine">Maine</MenuItem>
-                                <MenuItem value="Maryland">Maryland</MenuItem>
-                                <MenuItem value="Massachusetts">Massachusetts</MenuItem>
-                                <MenuItem value="Michigan">Michigan</MenuItem>
-                                <MenuItem value="Minnesota">Minnesota</MenuItem>
-                                <MenuItem value="Mississippi">Mississippi</MenuItem>
-                                <MenuItem value="Missouri">Missouri</MenuItem>
-                                <MenuItem value="Montana">Montana</MenuItem>
-                                <MenuItem value="Nebraska">Nebraska</MenuItem>
-                                <MenuItem value="Nevada">Nevada</MenuItem>
-                                <MenuItem value="New Hampshire">New Hampshire</MenuItem>
-                                <MenuItem value="New Jersey">New Jersey</MenuItem>
-                                <MenuItem value="New Mexico">New Mexico</MenuItem>
-                                <MenuItem value="New York">New York</MenuItem>
-                                <MenuItem value="North Carolina">North Carolina</MenuItem>
-                                <MenuItem value="North Dakota">North Dakota</MenuItem>
-                                <MenuItem value="Ohio">Ohio</MenuItem>
-                                <MenuItem value="Oklahoma">Oklahoma</MenuItem>
-                                <MenuItem value="Oregon">Oregon</MenuItem>
-                                <MenuItem value="Palau">Palau</MenuItem>
-                                <MenuItem value="Pennsylvania">Pennsylvania</MenuItem>
-                                <MenuItem value="Puerto Rico">Puerto Rico</MenuItem>
-                                <MenuItem value="Rhode Island">Rhode Island</MenuItem>
-                                <MenuItem value="South Carolina">South Carolina</MenuItem>
-                                <MenuItem value="South Dakota">South Dakota</MenuItem>
-                                <MenuItem value="Tennessee">Tennessee</MenuItem>
-                                <MenuItem value="Texas">Texas</MenuItem>
-                                <MenuItem value="Utah">Utah</MenuItem>
-                                <MenuItem value="Vermont">Vermont</MenuItem>
-                                <MenuItem value="Virgin Islands">Virgin Islands</MenuItem>
-                                <MenuItem value="Virginia">Virginia</MenuItem>
-                                <MenuItem value="Washington">Washington</MenuItem>
-                                <MenuItem value="West Virginia">West Virginia</MenuItem>
-                                <MenuItem value="Wisconsin">Wisconsin</MenuItem>
-                                <MenuItem value="Wyoming">Wyoming</MenuItem>
-
+                            {rows}
                             </Select>
                     </FormControl>
                  </div>

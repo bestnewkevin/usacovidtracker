@@ -30,15 +30,15 @@ function search(nameKey, myArray){
       super(props);
       this.state = {
           fetchingData:false,
-          stateName : "",
-          deaths : "",
-          activeCases:"",
-          positive:"",
-          recovered:"",
-          hospitalizedCurrently:"",
-          hospitalizedCumulatively:"",
-          totalTests:"",
-          lastDateModified:"",
+          stateName : null,
+          deaths : null,
+          activeCases:null,
+          positive:null,
+          recovered:null,
+          hospitalizedCurrently:null,
+          hospitalizedCumulatively:null,
+          totalTests:null,
+          lastDateModified:null,
       };
       
     };
@@ -48,21 +48,20 @@ function search(nameKey, myArray){
 
     render(){
         //console.log("StateTAble ");
-    
+        let rows = null
         if(this.props.data && this.props.stateName){
           //console.log(this.props.data.table)
-          console.log("this is teh state data");
+          //extract Chart Data
           const stateData = search(this.props.stateName,this.props.data.table);
-          console.log(stateData);
-
           const totalCases = stateData.TotalCases;
           const activeCases = stateData.ActiveCases;
           const totalDeaths = stateData.TotalDeaths;
           const totalTests = stateData.TotalTests;
           const deathsPerMillion = stateData.Deaths_1M_Pop;
           const testsPerMillion = stateData.Tests_1M_Pop;
-          console.log(totalCases);
-          const rows = [
+         
+          //populate rows for returning
+          rows = [
             createData("Total Cases", totalCases),
             createData('Active Cases', activeCases),
             createData('Total Deaths', totalDeaths),
@@ -70,65 +69,41 @@ function search(nameKey, myArray){
             createData('Deaths Per Million', deathsPerMillion),
             createData('Tests Per Million', testsPerMillion),
           ];
+
+        }
+        else{
+          rows = [
+            createData("Total Cases", null),
+            createData('Active Cases', null),
+            createData('Total Deaths', null),
+            createData('Total Tests', null),
+            createData('Deaths Per Million', null),
+            createData('Tests Per Million', null),
+          ];
+
+        }
           return(
             <TableContainer component={Paper}>
               <Table aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell>{this.props.stateName}</TableCell>
-                    <TableCell align="right">Number</TableCell>>
+                    <TableCell align="right">Number</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {rows.map((row) => (
                     <TableRow key={row.name}>
-                      <TableCell component="th" scope="row">
-                        {row.name}
-                      </TableCell>
-                      <TableCell align="right">{row.number ? row.number : "N/A"}</TableCell>
+                      <TableCell component="th" scope="row">{row.name}</TableCell>
+                      <TableCell align="right">{row.number?row.number:"N/A"}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
               </Table>
             </TableContainer>
           );   
-        }
-        else{
-          
-
-
-          const rows = [
-            createData("Total Cases", "N/A"),
-            createData('Active Cases', "N/A"),
-            createData('Total Deaths', "N/A"),
-            createData('Total Tests', "N/A"),
-            createData('Deaths Per Million', "N/A"),
-            createData('Tests Per Million', "N/A"),
-          ];
-          return(
-            <TableContainer component={Paper}>
-              <Table aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>State</TableCell>
-                    <TableCell align="right">Number</TableCell>>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map((row) => (
-                    <TableRow key={row.name}>
-                      <TableCell component="th" scope="row">
-                        {row.name}
-                      </TableCell>
-                      <TableCell align="right">{row.number}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          );   
-          
-        }
+        
+      
         
     }  
       
