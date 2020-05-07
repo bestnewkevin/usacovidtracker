@@ -14,7 +14,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## What It Looks Like
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+![Image](public/images/USATracker.png)
 
 ## Available Scripts
 
