@@ -1,11 +1,11 @@
 import React from 'react';
-import './styles/stateDropDown.css';
+import './styles/stateSelection.css';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import StateTable from './StateTable';
-
+import LastMonthDeaths from './LastMonthDeaths';
 
 /* Sort States in selection after being pulled from JSON*/
 function compare( a, b ) {
@@ -82,7 +82,9 @@ class StateSelection extends React.Component{
                     </FormControl>
                  </div>
                  <StateTable className = "stateTable" stateName = {this.state.stateName} data = {this.props.data}/>
-                 
+                 <div className = "lastTwoWeeks">
+                    <LastMonthDeaths stateName = {this.state.stateName}/>
+                 </div>
                 </>
             );
        

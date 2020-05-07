@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/stateDropDown.css'
+import './styles/stateSelection.css'
 import StateSelection from './StateSelection';
 import USAMap from "react-usa-map";
 import states_hash from './inputs/states_hash';
@@ -87,6 +87,7 @@ class MapView extends React.Component{
             return(
                 <>
                     <h2>United States Covid-19 State Tracker</h2>
+                    <h6>Data Sources/Notes @ the Footer</h6>
                     <div className = "mapContainer">
                         <USAMap customize={this.state.translatedStates} onClick={this.mapHandler} width = "75%" />
                     </div>
@@ -112,8 +113,18 @@ class MapView extends React.Component{
                         <StateSelection 
                         onStateNameChange = {this.handleSelectedStatesChange}
                         data = {this.state.data}/>
-
                     </div>
+                    <div className = "dropDown">
+                        <StateSelection 
+                        onStateNameChange = {this.handleSelectedStatesChange}
+                        data = {this.state.data}/>
+                    </div>
+                    <div className = "dropDown">
+                        <StateSelection 
+                        onStateNameChange = {this.handleSelectedStatesChange}
+                        data = {this.state.data}/>
+                    </div>
+                    
 
                 </>
             

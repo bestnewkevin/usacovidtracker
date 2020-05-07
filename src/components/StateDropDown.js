@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/stateDropDown.css';
+import './styles/stateSelection.css';
 import StateTable from './StateTable';
 import StateSelection from './StateSelection';
 

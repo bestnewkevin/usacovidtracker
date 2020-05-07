@@ -12,6 +12,7 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "react-usa-map": "^1.4.0",
+    "recharts": "^1.8.5",
     "save": "^2.4.0"
   },
   "scripts": {
