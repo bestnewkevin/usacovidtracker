@@ -1,5 +1,5 @@
 import React from 'react';
-import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine,} from 'recharts';
+import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 import daysPerMonth from './inputs/daysPerMonth';
 import states_hash from './inputs/states_hash';
 import monthNames from './inputs/monthNames';
@@ -24,10 +24,10 @@ function processFetchURL (stateName, today){
         let currMonth = String(month);
         let currDay = String(day);
 
-        if(currMonth.length == 1){
+        if(currMonth.length === 1){
             currMonth = "0" + currMonth;
         }
-        if(currDay.length == 1){
+        if(currDay.length === 1){
             currDay = "0" + currDay
         }
 
@@ -68,13 +68,7 @@ class LastTwoWeeksDeaths extends React.Component{
             let APIUrls = processFetchURL(stateName, new Date());
             var promises = APIUrls.map(url => fetch(url).then(resp => resp.json()));
             Promise.all(promises).then(results => {
-                /*
-                [
-                    {
-                        name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
-                    }
-                ]
-                */
+ 
                 let newChartData = []
                 results.forEach(dateData => {
                     console.log(monthNames[parseInt((String(dateData.date).slice(4,6)))]);

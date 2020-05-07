@@ -89,7 +89,7 @@ class MapView extends React.Component{
                     <h2>United States Covid-19 State Tracker</h2>
                     <h6>Data Sources/Notes @ the Footer</h6>
                     <div className = "mapContainer">
-                        <USAMap customize={this.state.translatedStates} onClick={this.mapHandler} width = "75%" />
+                        <USAMap customize={this.state.translatedStates} onClick={this.mapHandler} width = "60%" />
                     </div>
                     <div className = "dropDown">
                         <StateSelection 
