@@ -1,5 +1,5 @@
 ## USA Covid Tracker
-- Quick and "Fun" REACT COVID Tracker centered around the USA. Simple Covid Information about States. A little bit of magic to make the corresponding State light up teal(not red, too scary and exhausting) on the map. Also there are graphs to show more sad stats in the last 30 days.
+- REACT COVID Tracker centered around the USA. Simple Covid Information about States from two sources. A little bit of magic to make the corresponding State light up teal on the map. Also there are graphs to show more stats in the last 30 days.
 
 
 ## Resources Used
