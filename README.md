@@ -1,14 +1,14 @@
 ## USA Covid Tracker
-- Quick and "Fun" REACT COVID Tracker centered around the USA. Simple Covid Information about States. A little bit magic to make the corresponding State light up teal(not red, too scary and exhausting) on the map. 
-- TODO: Going to add Basic Graphs after some research that will show some arbitrary info.
+- Quick and "Fun" REACT COVID Tracker centered around the USA. Simple Covid Information about States. A little bit of magic to make the corresponding State light up teal(not red, too scary and exhausting) on the map. Also there are graphs to show more sad stats in the last 30 days.
 
 
 ## Resources Used
 - REACT App
 - Material-UI https://material-ui.com/
-- API: https://covid19-docs.chrismichael.now.sh/#api-CasesInAllUSStates very cool
-- React-USA-Map https://www.npmjs.com/package/react-usa-map also very cool
-- Graph??>>
+- API For State Tables: https://covid19-docs.chrismichael.now.sh/#api-CasesInAllUSStates very cool
+- API For Graphs: https://covidtracking.com/api
+- USA-Map: https://www.npmjs.com/package/react-usa-map also very cool
+- Graph: https://recharts.org/en-US/
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
